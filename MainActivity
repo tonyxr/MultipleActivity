@@ -1,0 +1,106 @@
+package com.tonyxr.multipleactivity;
+
+import android.app.ListActivity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.content.Intent;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Button;
+
+public class MainActivity extends ListActivity
+{
+    private TextView tvInfo;
+    private CheckBox cbWebsite;
+    private Button btnInfo;
+
+    static final String[] FRIENDS = new String[]{"website", "News Pages", "searching engines"};
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_main);
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, FRIENDS));
+        //getListView().setTextFilterEnabled(true);
+        //cbWebsite = (CheckBox) findViewById(R.id.cbWebsite);
+        //tvInfo = (TextView) findViewById(R.id.tvProjectName);
+    }
+
+    protected void onListItemClick(ListView l, View v, int position, long id)
+    {
+
+        super.onListItemClick(l, v, position, id);
+        Intent intent = null;
+        //Object o = this.getListAdapter().getItem(position);
+        //String friend = o.toString();
+        //Toast.makeText(this, "You have chosen the friend: " + " " + friend, Toast.LENGTH_LONG).show();
+
+        if(position == 0)
+        {
+            intent = new Intent(this, website.class);
+            //startActivity(intent);
+        }
+        if(position == 1)
+        {
+            intent = new Intent(this, NewsPage.class);
+            //startActivity(intent);
+        }
+        if(position == 2)
+        {
+            intent = new Intent(this, Searchings.class);
+            //startActivity(intent);
+        }
+        if (intent != null)
+        {
+            startActivity(intent);
+        }
+
+    }
+/**
+    public void onClickCheckBox(View view)
+    {
+        Intent intent = null;
+        boolean checked = ((CheckBox) view).isChecked();
+        switch(view.getId()) {
+            case R.id.cbWebsite:
+                if (checked)
+                {
+                    intent = new Intent(this, website.class);
+                }
+                else
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "please choose one page to go...";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
+                break;
+
+            case R.id.cbCheckBox2:
+                if (checked)
+                {
+                    intent = new Intent(this, NFC.class);
+                }
+
+                else
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "please choose one page to go...";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
+                break;
+        }
+    }
+     **/
+
+}
