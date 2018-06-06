@@ -1,0 +1,89 @@
+package com.tonyxr.multipleactivity;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.content.Intent;
+
+public class NewsPage extends AppCompatActivity {
+
+    private Button btntimes;
+    private Button btnnytimes;
+    private Button btnforbes;
+    private Button btncnn;
+    private Button btnfox;
+    private WebView wbnewspage;
+    private int back = 0;
+    private Button btnback3;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        wbnewspage = (WebView)findViewById(R.id.wbnewspage);
+        setContentView(R.layout.activity_news_page);
+        btntimes = (Button)findViewById(R.id.btntimes);
+        btntimes.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                wbnewspage.loadUrl("http://www.time.com/");
+            }
+        });
+        btncnn = (Button)findViewById(R.id.btncnn);
+        btnfox.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                wbnewspage.loadUrl("http://www.foxnews.com/");
+            }
+        });
+        btnfox = (Button)findViewById(R.id.btnfox);
+        btncnn.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                wbnewspage.loadUrl("https://www.cnn.com/");
+            }
+        });
+        btnnytimes = (Button)findViewById(R.id.btnnytimes);
+        btnnytimes.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                wbnewspage.loadUrl("https://www.nytimes.com/");
+            }
+        });
+        btnforbes = (Button)findViewById(R.id.btnforbes);
+        btnforbes.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                wbnewspage.loadUrl("https://www.forbes.com/#77e2850f2254");
+            }
+        });
+        btnback3 = (Button)findViewById(R.id.btnBack);
+        btnback3.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                back +=1;
+
+            }
+        });
+
+    }
+
+    public void back()
+    {
+        Intent intent = null;
+        if (back != 0)
+        {
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
+
+}
